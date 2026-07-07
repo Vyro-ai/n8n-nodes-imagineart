@@ -106,6 +106,10 @@ jobs:
         #   .npmrc here before publishing.
         run: |
           [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-          npm run release
+          npm run release || {
+            echo "=== npm run release failed — dumping npm debug logs for OIDC diagnosis ==="
+            tail -n +1 /home/runner/.npm/_logs/*-debug-0.log 2>/dev/null || true
+            exit 1
+          }
         env:
           NPM_TOKEN: $
