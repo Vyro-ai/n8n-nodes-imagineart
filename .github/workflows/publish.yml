@@ -81,6 +81,13 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
+      - name: Upgrade npm for OIDC trusted publishing
+        # Tokenless publish via a Trusted Publisher requires npm >= 11.5.1.
+        # Older npm (bundled with the LTS Node above) still signs the provenance
+        # statement but skips the registry OIDC exchange, so the publish PUT goes
+        # out unauthenticated and 404s. Upgrading npm enables the OIDC auth.
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: 'npm ci'
 
