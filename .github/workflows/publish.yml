@@ -78,20 +78,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          # Node 24 ships npm >= 11.5.1, required for the registry OIDC handshake
-          # used by trusted publishing. On older Node/npm the publish still signs
-          # the provenance statement but sends the registry PUT unauthenticated,
-          # which the registry rejects as a misleading 404.
+          # Node 24 ships npm >= 11.5.1, required for the OIDC handshake that
+          # trusted publishing uses to authenticate the publish. Older npm signs
+          # provenance but sends the registry PUT unauthenticated, which 404s.
           node-version: '24'
           cache: 'npm'
-
-      - name: Ensure npm supports OIDC and record versions
-        # Belt-and-suspenders on the npm version, and print node/npm to the log so
-        # a failed OIDC publish is diagnosable rather than a silent 404.
-        run: |
-          npm install -g npm@latest
-          node --version
-          npm --version
 
       - name: Install dependencies
         run: 'npm ci'
@@ -106,10 +97,6 @@ jobs:
         #   .npmrc here before publishing.
         run: |
           [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-          npm run release || {
-            echo "=== npm run release failed — dumping npm debug logs for OIDC diagnosis ==="
-            tail -n +1 /home/runner/.npm/_logs/*-debug-0.log 2>/dev/null || true
-            exit 1
-          }
+          npm run release
         env:
           NPM_TOKEN: $
