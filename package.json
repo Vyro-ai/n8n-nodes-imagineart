@@ -1,7 +1,7 @@
 {
   "name": "@teamimagine/n8n-nodes-imagineart",
-  "version": "0.0.0",
-  "description": "n8n community node for ImagineArt \u2014 generate images, video, and more.",
+  "version": "0.1.0",
+  "description": "n8n community node for ImagineArt — generate images, video, and more.",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
