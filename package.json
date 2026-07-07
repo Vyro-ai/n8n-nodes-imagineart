@@ -1,6 +1,6 @@
 {
   "name": "@teamimagine/n8n-nodes-imagineart",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "n8n community node for ImagineArt — generate images, video, and more.",
   "license": "MIT",
   "publishConfig": {
