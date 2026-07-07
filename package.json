@@ -1,0 +1,65 @@
+{
+  "name": "@teamimagine/n8n-nodes-imagineart",
+  "version": "0.1.0",
+  "description": "n8n community node for ImagineArt \u2014 generate images, video, and more.",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/imagine-art/n8n-nodes-imagineart#readme",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "imagineart",
+    "imagine-art",
+    "ai",
+    "image-generation",
+    "video-generation",
+    "text-to-image",
+    "text-to-video",
+    "music-generation"
+  ],
+  "author": {
+    "name": "Ashad001",
+    "email": "ashad001sp@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imagine-art/n8n-nodes-imagineart.git"
+  },
+  "scripts": {
+    "build": "n8n-node build",
+    "build:watch": "tsc --watch",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/ImagineArtOAuth2Api.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/ImagineArt/ImagineArt.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "*",
+    "eslint": "9.32.0",
+    "prettier": "3.6.2",
+    "release-it": "^19.0.4",
+    "typescript": "5.9.2",
+    "vitest": "^4.1.9"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}

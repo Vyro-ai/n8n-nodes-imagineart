@@ -1,0 +1,16 @@
+# Build output & dependencies
+dist
+node_modules
+
+# macOS / editor cruft
+.DS_Store
+.vscode/
+
+# Internal maintainer, ops & security docs 
+docs/ 
+
+# AI-assistant / CLI scaffolding notes — internal only
+.agents/
+.claude/
+AGENTS.md
+CLAUDE.md
